@@ -15,18 +15,6 @@ const ElementModelSchema = new Schema({
         type: String, // 'token', 'media', 'top-bars', 'others'
         required: 'element category required'
     },
-    rows: {
-        type: Number,
-        min: 1,
-        max: 8,
-        required: 'please enter the element rows'
-    },
-    cols: {
-        type: Number,
-        min: 1,
-        max: 8,
-        required: 'please enter the element cols'
-    },
     props: [],
     createdDate: {
         type: Date,

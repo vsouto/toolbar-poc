@@ -2,17 +2,17 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const TemplateModelSchema = new Schema({
+const ItemModelSchema = new Schema({
     title: {
         type: String,
-        required: 'please enter the template title'
+        required: 'please enter the item title'
     },
-    elements: [],
-    grid: [],
+    children: [],
     createdDate: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = mongoose.model('TemplateModel', TemplateModelSchema);
+
+module.exports = mongoose.model('ItemModel', ItemModelSchema);

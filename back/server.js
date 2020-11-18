@@ -2,27 +2,23 @@ const express = require('express'),
   app = express(),
   cors = require('cors'),
   mongoose = require('mongoose'),
-  UserModel = require('./api/models/userModel'),
-  MonitorModel = require('./api/models/monitorModel'),
-  TemplateModel = require('./api/models/templateModel'),
+  ItemModel = require('./api/models/itemModel'),
   ElementModel = require('./api/models/elementModel'),
   bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/philips-poc')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/philips-toolbar-poc')
 
 app.use(cors()); //enable cors on all requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const userRoutes = require('./api/routes/userRoutes');
-userRoutes(app);
 
-const monitorRoutes = require('./api/routes/monitorRoutes');
-monitorRoutes(app);
+const toolbarRoutes = require('./api/routes/toolbarRoutes');
+toolbarRoutes(app);
 
-const templateRoutes = require('./api/routes/templateRoutes');
-templateRoutes(app);
+const itemRoutes = require('./api/routes/itemRoutes');
+itemRoutes(app);
 
 const elementRoutes = require('./api/routes/elementRoutes');
 elementRoutes(app);

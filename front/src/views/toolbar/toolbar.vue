@@ -56,6 +56,7 @@
 <script>
 
   import ToolbarElements from "@/views/toolbar/toolbar-elements";
+  import SchematicsService from "@/services/SchematicsService"
 
   export default {
     name: 'Sidebar',
@@ -65,6 +66,21 @@
     data: () => ({
       toolbarElements: false
     }),
+    mounted() {
+
+      console.log('mounted toolbar');
+
+      SchematicsService.getSchematics()
+        .then(res => {
+
+          console.log('got shematics', res);
+          return res
+        })
+        .catch((error) => {
+          console.log('error', error); //eslint-disable-line
+
+        })
+    },
     methods: {
       activateToolbarElements() {
         this.toolbarElements = !this.toolbarElements;
