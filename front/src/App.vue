@@ -15,7 +15,7 @@
           width="40"
         />
 
-        Philips Proof of Concept App
+        Philips API Dashboard
       </div>
 
       <v-spacer></v-spacer>
@@ -47,3 +47,7 @@ export default Vue.extend({
   }),
 });
 </script>
+
+<style>
+  @import './assets/custom-monitor.css';
+</style>

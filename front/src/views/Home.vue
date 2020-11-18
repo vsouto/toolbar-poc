@@ -63,38 +63,38 @@
 
 <script>
 
-export default {
-  name: 'Home',
-  components: {
-  },
-  data: () => ({
-    ecosystem: [
-      {
-        text: 'vuejs',
-        href: 'https://vuejs.org/',
-      },
-      {
-        text: 'vuetify',
-        href: 'https://github.com/vuetifyjs',
-      },
-      {
-        text: 'github',
-        href: 'https://github.com',
-      },
-      {
-        text: 'mongodb',
-        href: 'https://www.mongodb.com/',
-      },
-      {
-        text: 'nodejs',
-        href: 'https://nodejs.org/',
+  export default {
+    name: 'Home',
+    components: {
+    },
+    data: () => ({
+      ecosystem: [
+        {
+          text: 'vuejs',
+          href: 'https://vuejs.org/',
+        },
+        {
+          text: 'vuetify',
+          href: 'https://github.com/vuetifyjs',
+        },
+        {
+          text: 'github',
+          href: 'https://github.com',
+        },
+        {
+          text: 'mongodb',
+          href: 'https://www.mongodb.com/',
+        },
+        {
+          text: 'nodejs',
+          href: 'https://nodejs.org/',
+        }
+      ]
+    }),
+    methods: {
+      goToBlog() {
+        this.$router.push({name: 'Blog'})
       }
-    ]
-  }),
-  methods: {
-    goToBlog() {
-      this.$router.push({name: 'Blog'})
     }
-  }
-};
+  };
 </script>
