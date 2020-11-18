@@ -12,7 +12,7 @@
         </v-col>
 
         <v-col cols="6">
-          <monitor-grid></monitor-grid>
+          <dashboard></dashboard>
         </v-col>
 
       </v-row>
@@ -23,13 +23,13 @@
 <script>
 
   import Toolbar from "@/views/toolbar/toolbar";
-  import MonitorGrid from "@/views/monitor/monitor-grid";
+  import Dashboard from "@/views/Dashboard";
 
   export default {
     name: 'Poc',
     components: {
       Toolbar,
-      MonitorGrid
+      Dashboard
     },
     data: () => ({
 
