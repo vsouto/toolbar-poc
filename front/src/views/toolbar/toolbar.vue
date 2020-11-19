@@ -3,87 +3,83 @@
     <div class="toolbar">
       <div
         class="toolbar-button"
-        @click="activateToolbarElements"
+        v-for="item in toolbar.menuItems"
+        v-if="item.status === 'active'"
       >
         <v-icon
           small
-          color="green darken-2"
+          color="blue lighten"
+          @click="activateToolbarElements(item)"
         >
-          mdi-apps
-        </v-icon>
-      </div>
-      <div class="toolbar-button">
-        <v-icon
-          small
-          center
-          color="green darken-2"
-        >
-          mdi-domain
-        </v-icon>
-      </div>
-      <div class="toolbar-button">
-        <v-icon
-          small
-          center
-          color="green darken-2"
-        >
-          mdi-domain
-        </v-icon>
-      </div>
-      <div class="toolbar-button">
-        <v-icon
-          small
-          center
-          color="green darken-2"
-        >
-          mdi-domain
-        </v-icon>
-      </div>
-      <div class="toolbar-button">
-        <v-icon
-          small
-          center
-          color="green darken-2"
-        >
-          mdi-domain
+          {{item.icon}}
         </v-icon>
       </div>
     </div>
-    <toolbar-elements v-if="toolbarElements"></toolbar-elements>
+    <toolbar-elements
+      v-if="toolbarSubMenuVisible"
+      :selectedMenu="selectedMenu"
+    ></toolbar-elements>
+    <toolbar-controls
+      :toolbar="toolbar"
+    ></toolbar-controls>
   </div>
 </template>
 
 <script>
 
   import ToolbarElements from "@/views/toolbar/toolbar-elements";
+  import ToolbarControls from "@/views/toolbar/toolbar-controls";
   import SchematicsService from "@/services/SchematicsService"
+  import ToolbarModel from "../../models/toolbar";
 
   export default {
     name: 'Sidebar',
     components: {
-      ToolbarElements
+      ToolbarElements,
+      ToolbarControls
     },
     data: () => ({
-      toolbarElements: false
+      toolbarSubMenuVisible: false,
+      schematics: [],
+      toolbar: {},
+      selectedMenu: false
     }),
     mounted() {
 
-      console.log('mounted toolbar');
+      var _this = this;
 
       SchematicsService.getSchematics()
         .then(res => {
 
           console.log('got shematics', res);
+
+          const response = JSON.parse(res.data);
+
+          _this.schematics = response;
+          //_this.menuItems = response.menuItems;
+
+          // Creates a Toolbar Model, simulating the factory of a ToolbarHandler
+          this.toolbar = new ToolbarModel(response);
+
+          console.log('toolbar is now ', this.toolbar);
+
           return res
         })
         .catch((error) => {
           console.log('error', error); //eslint-disable-line
-
         })
     },
     methods: {
-      activateToolbarElements() {
-        this.toolbarElements = !this.toolbarElements;
+      activateToolbarElements(item) {
+
+        if (this.toolbarSubMenuVisible) {
+          this.selectedMenu = false;
+        }
+        else {
+          this.selectedMenu = item;
+        }
+
+        this.toolbarSubMenuVisible = !this.toolbarSubMenuVisible;
       }
     }
   };

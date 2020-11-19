@@ -1,37 +1,43 @@
 <template>
   <v-card
     class="mx-auto grid-element"
-    max-width="344"
+    max-width="242"
+    @click="fireComponent()"
   >
+    <v-card-title class="headline text-truncate">
+      <v-icon color="teal" class="a_link">
+        {{component.icon}}
+
+      </v-icon>
+      {{component.title}}
+    </v-card-title>
     <v-card-text>
-      <div>Word of the Day</div>
-      <p class="display-1 text--primary">
-        be•nev•o•lent
-      </p>
-      <p>adjective</p>
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+        events<br>
+        {{component.events}}
       </div>
     </v-card-text>
-    <v-card-actions>
-      <v-btn
-        text
-        color="deep-purple accent-4"
-      >
-        Learn More
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 
+  import { EventBus } from '@/plugins/eventbus.js';
+
   export default {
     name: 'GenericElement',
     components: {
     },
-    data: () => ({
-    })
+    props: {
+      component: {
+        type: Object,
+        required: true
+      }
+    },
+    methods: {
+      fireComponent() {
+        EventBus.$emit('addItem', this.component);
+      }
+    }
   };
 </script>

@@ -2,11 +2,10 @@
   <div>
     <div class="container dashboard">
       <div class="row">
-        <div class="col-md-2 col-2">
-          <div class="pa-2 v-card v-sheet v-sheet--outlined theme--light rounded-0">
-            .col-2 .dashboard
-          </div>
-        </div>
+        <generic-element
+          v-for="item in items"
+          :component="item"
+        ></generic-element>
       </div>
     </div>
   </div>
@@ -14,19 +13,27 @@
 
 <script>
 
+  import GenericElement from "@/views/elements/generic/generic";
+  import { EventBus } from '@/plugins/eventbus.js';
+
   export default {
     name: 'Dashboard',
+    components: {
+      GenericElement,
+    },
     data: () => ({
       toolbarOpen: false,
-      colTwo: [],
+      items: []
     }),
-    ready() {
-
-    },
     created() {
-
-
+      EventBus.$on('addItem', this.captureEvent);
     },
+    methods: {
+      captureEvent(data) {
+        console.log('event captured: ', data);
+        this.items.push(data);
+      }
+    }
   };
 </script>
 

@@ -1,7 +1,10 @@
 <template>
   <div class="toolbar-elements">
-    <h2>Elements</h2>
-    <generic-element></generic-element>
+    <h2>{{selectedMenu.title}}</h2>
+    <generic-element
+      v-for="child in getChildren()"
+      :component="child"
+    ></generic-element>
   </div>
 </template>
 
@@ -14,21 +17,16 @@
     components: {
       GenericElement,
     },
-    data: () => ({
-      toolbarOpen: false,
-      colOne: [],
-      categories: [
-        [1, 2, 3],
-        [4, 5, 6]
-      ],
-    }),
-    mounted() {
-
-    },
-    created() {
-
+    props: {
+      selectedMenu: {
+        type: Object,
+        required: true
+      }
     },
     methods: {
+      getChildren() {
+        return this.selectedMenu.children;
+      },
     }
   };
 

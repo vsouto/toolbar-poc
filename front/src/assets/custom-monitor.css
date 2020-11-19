@@ -72,6 +72,30 @@
     background-color: darkgray;
     color: white;
     cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.toolbar-controls{
+    position: absolute;
+    top: 30px;
+    right: 10%;
+    background-color: grey;
+    min-height: 500px;
+    min-width: 220px;
+    color: dimgrey;
+}
+.toolbar-control {
+    width: 90%;
+    text-align: center;
+    height: 32px;
+    margin: 4px;
+    background-color: #aeddff;
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 /**
