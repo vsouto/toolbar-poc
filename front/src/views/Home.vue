@@ -30,7 +30,7 @@
           <br>
           <p class="subheading font-weight-regular">
             <router-link :to="{ name: 'Poc'}">
-              Component X - Proof of Concept
+              Toolbar - Proof of Concept
             </router-link>
           </p>
         </v-col>
